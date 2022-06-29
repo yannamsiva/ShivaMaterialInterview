@@ -1,0 +1,350 @@
+Exceptions
+===================
+Exceptions are objects under execution of a program created by jvm it represents
+the corresponding logical errors.
+
+SyntaxErrors
+================
+Syntax errors occur whenever a statement written by the programmer cannot be compiled by the compiler
+class A 
+{
+	public static void main(String[] args) 
+	{
+		int i=100;
+		int j=0;
+		int x=i/j;
+		System.out.println(x);
+	}
+}
+
+Concept of handling the exception class objets and avoiding them from reaching back to jvm is called as Exception Handling
+
+To Handle Exception Class we hv 5 keywords.
+try
+catch
+throws
+throw
+finally
+
+try is associated with one catch block.
+
+eg:
+====
+class A 
+{
+	public static void main(String[] args) 
+	{
+		try
+		{
+		int i=100;
+		int j=0;
+		int x=i/j;
+		System.out.println(x);
+			
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+
+eg:
+====
+//try is associated with more then one catchblock
+class A 
+{
+	public static void main(String[] args) 
+	{
+		try
+		{
+		int i=100;
+		int j=0;
+		int x=i/j;
+		System.out.println(x);	
+		}
+		catch (NullPointerException e)
+		{
+			System.out.println(e);
+		}
+		catch (NumberFormatException e)
+		{
+			System.out.println(e);
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
+		
+		
+	}
+}
+note: Once we declare varibles inside the try its local to the try block.
+eg
+class A 
+{
+	public static void main(String[] args) 
+	{
+		try
+		{
+		int i=100;
+		int j=0;
+		int x=i/j;
+		System.out.println(x);
+		}
+		catch (NullPointerException e)
+		{
+			System.out.println(e);
+		}
+		catch (NumberFormatException e)
+		{
+			System.out.println(e);
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
+		
+		finally
+		{
+
+//cleaning the resources.
+		System.out.println("hello how are u");
+
+		}
+	}
+}
+Various methods To print Exception Information:--
+Throwable class defines methods to print Exception information.
+1)printStackTrace() 
+=====================
+This method prints Exception information 
+nameofException: discription follow by
+stacktrace
+2)toString()
+it prints information nameofException : decripton
+3)getMessage)
+description
+
+eg:
+======
+invalid............>
+class A 
+{
+	public static void main(String[] args) 
+	{
+		try
+		{
+		int i=100;
+		int j=0;
+		int x=i/j;
+		System.out.println(x);
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
+		catch (NumberFormatException e)
+		{
+			System.out.println(e);
+		}
+		catch (NullPointerException e)
+		{
+			System.out.println(e);
+		}
+		
+		
+		
+		finally
+		{
+
+//cleaning the resources.
+		System.out.println("hello how are u");
+
+		}
+	}
+}
+
+finalize()
+===========
+It is a method which should be executed by Garbage Collectionr before destroying any object to perform clean-up activities.
+
+
+
+eg
+5 key words
+
+try
+catch
+finally
+Throws
+throw
+
+class A 
+{
+	public void funA()throws Exception
+	{
+		
+	int i=100;
+		int j=0;
+		int x=i/j;
+		System.out.println(x);
+			
+	}
+	public static void main(String[] args)
+	{
+		A a=new A();
+		try
+		{
+			a.funA();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);		
+		}
+
+	}
+}
+eg:
+====
+class M
+{
+	M()throws Exception
+	{
+		System.out.println("constructor");
+	}
+}
+class A extends M 
+{
+	int i=100;
+	A()throws Exception
+	{
+		System.out.println("constructorA");
+	}
+	public static void main(String[] args) 
+	{
+		A a=null;
+		try
+		{
+		a=new A();			
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
+System.out.println(a.i);//
+
+	}
+}
+
+Throw
+==========
+Some times we can create exception object manually and hand-over that object to that jvm explicitly by using throw keyword.
+
+throw new ArithemeticException("the page is underconstruction");
+
+the main purpose of throw key word is to hand-over our created excpetion object manually to the jvm.
+
+eg:
+====
+class UserException extends Exception 
+{
+	String s;
+	UserException()
+	{
+		s="hello mute the mickes";//default constructor calls
+	}
+	UserException(String str)
+	{
+		s=str;//default constructor calls
+	}
+	public String toString()
+	{
+		return(s);
+	}}
+	
+	class Sample
+	{
+		void display(int x)
+		{
+			System.out.println("display ");
+			try
+			{
+			System.out.println("display try stament");
+			if(x<0)
+				throw new UserException("The page uderConstruction");
+			}
+
+			catch(Exception e)
+			{
+				System.out.println(e);//the page is underconsturction
+
+	}
+		}
+	}
+
+
+		class Test
+		{
+			public static void main(String []args)
+			{
+				System.out.println("start");
+				Sample s=new Sample();
+				s.display(-2);
+		}
+		}
+
+
+LocalInnClass
+============
+inside the function if we declare a class is called as Local InnerClass
+abstract class B
+{
+	int m=1000;
+}
+interface X
+{
+	void funX();
+}
+class  A
+{
+
+	//static varibles and methods and non-static varibles and methods we can access directly from local innerclasss
+	int i=100;
+	int j=200;
+	void funOu()
+	{
+final		int d=500;
+		//Local Innerclass supports Inheritance 
+class Linner extends B implements X
+{
+	public void funX()
+	{
+System.out.println("am coming from interface");
+	}
+void funIn()
+	{
+		System.out.println(d);
+	System.out.println(m);
+System.out.println(i);
+System.out.println(j);
+System.out.println("inside funIn");
+	}//funIn
+
+}//localinnerclass
+
+
+
+Linner l=new Linner();
+l.funIn();
+l.funX();
+
+	}//FunctionOu
+
+	public static void main(String[] args) 
+	{//Its not possible to create object of localinnerclass from main ()
+	A b=new A();
+	b.funOu();
+		System.out.println("Hello World!");
+	}
+}

@@ -1,0 +1,369 @@
+Transaction
+============
+A Transaction is a process of combining related operations into single unit and applying doeverything or nothing prinicipleon the unit of that work.
+
+TX is the middleware service which can execute do sensitive b.logic continous montoring by applying do everthing or nothing principle.
+
+
+ex:Transfer money task is the collection of two releated operations.
+a)Withdraw amt from source A/c
+b)Deposit amt into the destination a/c
+
+IN order to make sure all these operations are executing smoothly all the times we need to apply transactions managment so that if one operation fails,the other operation will be rollback.
+
+Since ejb components are knons as b.compo it is recommanded to execute b.lgoics
+of this comp. by performing transaction management.
+Sun microsystems give JTA as an api Specification containg rules and guidelines to develop transaction service. This specification will be taken by s/w vendor company to develop tx service. All applications server s/ws are giving tx middleware service based on this jta spcification.
+In Tx management 3 important activities will be there
+1)Begin Transaction
+2)Execute B.logic by hving set of related operations
+3)Commit or rollback the tx 
+
+Based on Number of Resources Dbs/w we can say there are 2 types of tx
+
+1)Local Transaction
+all the operations of tx managemnet will deal with single resource (DBS/w)
+ex:Trasfer money task bw two a/c of same bank.
+2)Distrubuted tx
+
+In this applications of tx management will deal with multiple resources 
+ex: Tx money task b/w two a/cs of two different bank.
+
+note: Ejb Supports Local and Distrubted TX.
+
+
+
+
+If any one operation fails the other operations must be either rolled back or should not be executed.
+When u apply transactions support on bl or persistence logic it gives suppots for acid properties implementation
+A-->Automacity : It is the process of combining related operations into single unit.
+c-->Consistency : we generally apply the rules on Database data like Balance column value must not be empty Evern though this rule is violated during the execution of transaction operations. if there is a gurantee for no rule violation at the end of the transaction then we can say bl  is executing consistency well.
+Isolation : isolation gives the gurantee that gurantee that only one request/user executes on the Db table data. this is possible by applying locks on the db at various levels.
+D-->Durability Getting the gurantee that the data saved in db s/w will stay for long time eventhoug db s/w is crashed is called durability  for this generally every db s/w allows to take the backups.
+
+TX models
+===============
+1)FlatTx model
+2)NestedTx model
+
+1)FlatTx model
+====================
+
+note: ejb,hiberante supports only flat tx where as spring f/w supports both flat and nested tx.
+note : ejb 3 and hibernate4 supports Both Transactions(flat and Nested tx)
+ON ejb component we can configure  flat Transactions in two ways.
+1)Bean managed Transactions(BMT)
+in this model the bean class of ejb component used java stmts of transactions api to interact with m/w service tx.
+it means,programmer only takes comits or rollback the transaction by interacting with tx m/w service
+
+
+2)Container Managed Transactions(Cmt)
+IN this model bean class doesnot contain any java stmts to interact with tx m/w service. Everything will be done by Ejb Container.
+
+To apply tx m/w service on ejb comp.
+<Transaction-type>bean/container</Transaction-type>
+         SB       EB       MDB
+bmt      yes      no        yes
+cmt      yes     yes        yes
+
+Jta(java Transaction API)
+==========================
+javax.transaction.*;
+
+UserTrancation object whose class implements javax.transaction.UserTransaction interface. can represent communication between bean class Transaction m/wservice. on this object we can call begin(),commit(),rollback() methods to make transaction m/w service to apply Transaction service on Bm()
+setTransactionTimeOut(--)To specify time out period for tx service
+setRollbackOnly() marks the tx for rollbacking when this method is called tx will not be rollbacked immediatly but at the end of code execution tx will be rollbacked and it will not be committed.
+getStatus()-->this method gives current status of Tx service that is enabled and running on bean class object this method returns constants of javax.transaction.Status()representing the current status of tx.
+
+
+public void bm()
+{
+UserTransaction ut=null;
+try
+{
+ut=stx.getTransaction();//
+ut.begin();
+---
+----B.L Staments
+----
+ut.commit()
+
+catch(Exception e)
+{
+try
+{
+ut.rollback();
+}
+catch(Excetion e)
+{}
+}
+note: Dont open Bmt mode tx service across the multiple b.mehthod definitions while working with slsb com bcz there is no gurantee two b.methods invoked by a client will execute on same bean class object.but its poosible in sfsb comp.d
+
+Valid in SFSB and Invlaid in Slsb component following code
+=============================================================\
+UserTransaction ut=null;
+public void bm()
+{
+try
+{
+ut=ctx.getUserTrasaction();
+ut.begin();
+oper1.......
+oper2-------
+oper3--------
+}
+catch(Exception e)
+{
+}
+public void bm2()
+{
+
+oper4
+ut.commit();
+}
+catch(Exception e)
+try
+{
+ut.rollback();
+}
+catch(Exception e){}
+
+
+
+checking(table)
+id  balance
+123  6000
+machine(table)
+id amount
+123 7000
+
+
+create table checking(id varchar2(10),balance varchar2(20));
+create table machine(id varchar2(10),amount varchar2(20));
+
+withdraw(amt) //apply tx here
+{
+reduce amt from checking(table)
+reduce amt from machine(table)
+}
+
+note:
+Problem with bmt is the bl of the bm should be mixed up with transaction api code to apply transactions based on xml configuration without having transactio api in the bl of the bm work with cmt.
+
+In Cmt model tx ejb container interact with Transaction m/w service to peform begin,commit,or rollback tx operations on bm's
+
+There are 6 tx attributes
+============================
+1)Required
+2)requiresNew()
+3)supports()
+4)notSupported
+5)never
+6)manditory
+
+suports is the default tx attribute for cmt enabled sb and ebs
+
+notsupported is default tx attribute for mdb component.
+Tx attributes are purely applicable only on bms of cmt enabled ejb component.
+
+multiple bms can be configured only on bms of cmt enabled ejb component.
+
+multiple bms can be configured only on single tx attribute.
+
+To configure tx attributes on bms of cmt enabled
+=============================================
+
+<assembly-descriptor>
+<container-transaction>
+<ejb-name>AccountEjb</ejb-name>
+<method-name>*</method-name>//* indicates all bms
+<transaction-attribute>Required</transaction-attribute>
+</container-transaction>
+</assembly-descriptor>
+
+note: once ejbcmp takes the support of session synchrozation we cannot work iwth never,notsupported and supports attributes
+becz these attribute is giving possiblity of bm execution without tx
+when tx is not there is no meaning of working with tx lifecycles
+
+afterBegin()
+beforeCompletion()
+afterComplition()
+
+
+JdbcLevelTransactions
+==================
+
+
+If your JDBC Connection is in auto-commit mode, which it is by default, then every SQL statement is committed to the database upon its completion.
+
+That may be fine for simple applications, but there are three reasons why you may want to turn off auto-commit and manage your own transactions:
+
+    To increase performance
+
+    To maintain the integrity of business processes
+
+    To use distributed transactions
+
+Transactions enable you to control if, and when, changes are applied to the database. It treats a single SQL statement or a group of SQL statements as one logical unit, and if any statement fails, the whole transaction fails.
+
+To enable manual- transaction support instead of the auto-commit mode that the JDBC driver uses by default, use the Connection object's setAutoCommit() method. If you pass a boolean false to setAutoCommit( ), you turn off auto-commit. You can pass a boolean true to turn it back on again.
+
+For example, if you have a Connection object named conn, code the following to turn off auto-commit:
+
+conn.setAutoCommit(false);
+
+Commit & Rollback
+
+Once you are done with your changes and you want to commit the changes then call commit() method on connection object as follows:
+
+conn.commit( );
+
+Otherwise, to roll back updates to the database made using the Connection named conn, use the following code:
+
+conn.rollback( );
+
+The following example illustrates the use of a commit and rollback object:
+
+try{
+   //Assume a valid connection object conn
+   conn.setAutoCommit(false);
+   Statement stmt = conn.createStatement();
+   
+   String SQL = "INSERT INTO Employees  " +
+                "VALUES (106, 20, 'Rita', 'Tez')";
+   stmt.executeUpdate(SQL);  
+   //Submit a malformed SQL statement that breaks
+   String SQL = "INSERTED IN Employees  " +
+                "VALUES (107, 22, 'Sita', 'Singh')";
+   stmt.executeUpdate(SQL);
+   // If there is no error.
+   conn.commit();
+}catch(SQLException se){
+   // If there is any error.
+   conn.rollback();
+}
+
+In this case none of the abobe INSERT statement would success and everything would be rolled back.
+
+For a better understanding, I would suggest to study Commit - Example Code.
+Using Savepoints:
+
+The new JDBC 3.0 Savepoint interface gives you additional transactional control. Most modern DBMS support savepoints within their environments such as Oracle's PL/SQL.
+
+When you set a savepoint you define a logical rollback point within a transaction. If an error occurs past a savepoint, you can use the rollback method to undo either all the changes or only the changes made after the savepoint.
+
+The Connection object has two new methods that help you manage savepoints:
+
+    setSavepoint(String savepointName): defines a new savepoint. It also returns a Savepoint object.
+
+    releaseSavepoint(Savepoint savepointName): deletes a savepoint. Notice that it requires a Savepoint object as a parameter. This object is usually a savepoint generated by the setSavepoint() method.
+
+There is one rollback ( String savepointName ) method which rolls back work to the specified savepoint.
+
+The following example illustrates the use of a Savepoint object:
+
+try{
+   //Assume a valid connection object conn
+   conn.setAutoCommit(false);
+   Statement stmt = conn.createStatement();
+   
+   //set a Savepoint
+   Savepoint savepoint1 = conn.setSavepoint("Savepoint1");
+   String SQL = "INSERT INTO Employees " +
+                "VALUES (106, 20, 'Rita', 'Tez')";
+   stmt.executeUpdate(SQL);  
+   //Submit a malformed SQL statement that breaks
+   String SQL = "INSERTED IN Employees " +
+                "VALUES (107, 22, 'Sita', 'Tez')";
+   stmt.executeUpdate(SQL);
+   // If there is no error, commit the changes.
+   conn.commit();
+
+}catch(SQLException se){
+   // If there is any error.
+   conn.rollback(savepoint1);
+}
+
+eg
+====
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+public class Connect {
+
+	/**
+	 * @param args
+	 * @throws SQLException 
+	 */
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection con=null;
+		Statement st=null;
+		ResultSet rs=null;
+//Step1 RegistrerDriver
+		try {
+			//DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
+			//Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("Driver is Registerd");
+			//Step2: Establish connection with DataBase Software
+			//con=DriverManager.getConnection("jdbc:odbc:shiva","scott","tiger");
+			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","scott","tiger");
+		//	 con.setAutoCommit(false);
+			if(con!=null)
+				System.out.println("Connection is Established");
+			else
+				System.out.println("Connection is Not Established");
+			 st=con.createStatement();
+			 String qry="insert into student values(110,'sirisha','New')";
+			 st.executeUpdate(qry);
+			 String qry1="insert into student values(111,'old')";
+			 st.executeUpdate(qry1);
+			// con.commit();
+			 // rs=st.executeQuery("select * from student");
+			 /*
+			  * Executed information will come and store inside the ResultSet interface referece varibles.In the movement cursor is pointing Before the FistRecord
+			  * to move cursor Record position we hv to use boolean next() is avilable inside the ResultSet interface.
+			  * Any programming language index start 0
+			  * Any db language index start 1
+			  */
+			 /*int sno=0;
+			 String sname=null;
+			 String sadd=null;
+			 System.out.println("Student Details...........");
+			 			 while(rs.next())
+			 {
+				 sno=rs.getInt(1);
+				 sname=rs.getString("sname");
+				 sadd=rs.getString(3);
+				 
+				 System.out.println(sno+"\t"+sname+"\t"+sadd);
+			 }*/
+			
+		} 
+		catch(Exception e)
+		{
+			System.out.println(e);
+			//con.rollback();
+		}
+		finally
+		{
+			try
+			{
+				rs.close();
+				st.close();
+				con.close();
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}	
+		}
+	}
+
+}

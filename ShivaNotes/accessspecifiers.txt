@@ -1,0 +1,125 @@
+Package is a collection of classes and Interfaces
+we can classified two types 
+1)predefined packages
+java.lang.*;
+java.io.*;
+java.util.*;
+---
+-------
+2)UserDefinedPackages
+useing package keyword we can create packages.
+eg:
+====
+package p;
+class A 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+	}
+}
+
+javac -d  .  A.java
+java p.A
+
+class
+  varibles
+  methods
+  constructors
+Accesbility of class,varibles,methods,constrcutors...
+Sun MicroSystem intrdouced Accespecifiers/Modifers
+private
+default
+public
+protected
+
+        withintheclass  withinthepackage   otherpackage
+
+private    yes              no                 no
+
+Once we are useing private keyword before the varibles,methods,constructors we can access
+withintheclass and we cannot access withinthepackage and otherpackages.
+note : We can not use before the class Private keyword
+
+default   yes                yes                 no
+
+Once we arenot useing any accesspecifier before the class,method,varibles,constructors
+we can call as a Default accesspecifier
+we can access useing default accespecifiers withinthclass and withinthepackage and we canot access other packages.
+
+public     yes              yes                    yes
+
+once we are useing public accesspecifier before the class,methods,varibles,constrcutors
+we can access With in the class, with in the pacakge and other packages. also...
+
+
+protected  yes               yes                    yes(but it should participate inheritance)
+
+
+once we are useing Protected accesspecifier before the methods,varibles,constrcutors
+we can access With in the class, and with in the pacakge But other packages.if we want to access, it should participate inheritance then only we can access...
+
+note:protected we cannot Specify before the class .
+
+note: we cannot specify before the class staic,private,protected.
+
+eg:
+===
+package p;
+public class A 
+{
+	protected  int i=100;
+	public static void main(String[] args) 
+	{
+		A b=new A();
+		System.out.println(b.i);
+	}
+}
+
+package p1;
+import p.A;
+class B extends A
+{
+	public static void main(String[] args) 
+	{
+		B b=new B();
+		System.out.println(b.i);
+	}
+}
+
+
+
+
+
+eg
+===
+A.java
+=====
+package p;
+public class A 
+{
+	protected  int i=100;
+	 public A()
+	{
+System.out.println("constructor");
+	}
+	public static void main(String[] args) 
+	{
+		A  b=new A();
+		System.out.println(b.i);//100
+	}
+}
+
+B.java
+======
+package p1;
+import p.*;
+class B extends A
+{
+	public static void main(String[] args) 
+	{
+		B  b=new B();
+		System.out.println(b.i);
+	}
+}
+

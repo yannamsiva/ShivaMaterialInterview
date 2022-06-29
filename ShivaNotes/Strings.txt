@@ -1,0 +1,541 @@
+Object
+=======
+    is a root class of all the predefined and userdefined classes extends directly or indirectly its available java.lang.*;
+
+public String toString();
+    this method bydefault implementation is classname@hashcode.
+    if u want  u can override toString()userdefined classes
+    eg
+    ===
+class A 
+{
+	public String toString()
+	{
+
+return "shiva";
+	}
+	public static void main(String[] args) 
+	{
+		A b=new A();
+		System.out.println(b);//address will print
+	}
+}
+String
+==========
+public final class String
+extends Object
+implements Serializable, Comparable<String>, CharSequence
+
+A String is class its avilable java.lang.*; 
+Stirng is a Group of Characters
+String classes are used to represent these groups of characters
+We can even create an object of a String class useing new operator we can create object and without useing new operator.Instead of the new operator we use double quotes("")
+String s=new String("shiva");
+String s1=new String("shiva");
+
+String str="shiva";
+String str1="shiva";
+String str2="raja";
+
+String are immutable(not a modifable).Means
+Strings are constant; their values cannot be changed after they are created
+Once a String object is created the data inside the object cannot be modified .This is the reason We can say that Strings are immutable.
+Note:
+    The String class is immutable, so that once it is created a String object cannot be changed. If there is a necessity to make a lot of modifications to Strings of characters, then you should use String Buffer & String Builder Classes.
+eg:
+String d="Shiva";
+d="raja";
+
+String class hving predefined Constructors
+==============================================
+String():--Intializes a newly created String object so that it represents an empty character sequence.
+String s=new String();
+String(char[]ch):- Allocates a new String so that it represents the sequence of characters currently contained in the character array argument.
+char c='a';
+			char ch[]={'h','e','l','l','o','w'};
+String s1=new String(ch);
+String(char[]ch,int startindex,int numchars)
+Allocates new String object based on Starting index and numberofcharacters of character array.
+String(Object obj)
+Allocates a newly created String object it represents object type of object.
+String(String st) Intializes a newly created string object so that it represents the same sequence of characters as the argument in other words the newly created string is a copy of the argument String.
+public String(StringBuffer buffer)
+Allocates a new string that contains the sequence of characters currently contained in the string buffer argument. The contents of the string buffer are copied; subsequent modification of the string buffer does not affect the newly created string. 
+public String(StringBuilder builder)
+Allocates a new string that contains the sequence of characters currently contained in the string builder argument. The contents of the string builder are copied; subsequent modification of the string builder does not affect the newly created string.
+
+eg:
+===
+class A 
+{
+		public static void main(String[] args) 
+	{
+			char ch[]={'h','e','l','l','o','w'};
+			String s=new String();
+		System.out.println(s);
+		String s1=new String(ch,2,3);
+		System.out.println(s1);
+	}
+}
+
+String substring(int startindex)
+The substring begins with the character at the specified index and extends to the end of this string. 
+public String substring(int startIndex,
+                        int endIndex) 13-1  =12
+The substring begins at the specified beginIndex and extends to the character at index endIndex - 1. Thus the length of the substring is endIndex-beginIndex. 
+eg:
+===
+class A 
+{
+		public static void main(String[] args) 
+	{
+			System.out.println("shivashankarReddy".substring(5));
+						System.out.println("shivashankarReddy".substring(5,12));
+	}
+}
+
+public String replace(char oldChar,
+                      char newChar)
+Returns a new string resulting from replacing all occurrences of oldChar in this string with newChar. 
+eg:
+====
+class A 
+{
+		public static void main(String[] args) 
+	{
+			System.out.println("shivashankar".replace('a','A'));
+
+	}
+}
+public String replaceAll(String oldstring, String newstring)
+Returns a new string resulting from replacing all occurrences of oldstring in this string with newString. 
+
+public class A{
+   public static void main(String args[]){
+      String Str = new String(" shivaOnlinetraining Welcome to shivaOnlinetraining");
+
+      System.out.print("Return Value :" );
+      System.out.println(Str.replaceAll("shivaOnlinetraining","javapracticaltraining" ));
+   }
+}
+public String replaceFirst(String regex, String replacement)
+This method replaces the first substring of this string that matches the given regular expression with the given replacement.
+eg
+===
+public class A{
+   public static void main(String args[]){
+      String Str = new String("welcome to shivaonlinetraining welcome");
+     System.out.println(Str.replaceFirst("welcome", "java" ));
+   }
+}
+
+
+static String valueOf(primitvedaytypes,objects,char,char[],strings.....)
+===========================================================================
+Any Type of Information useing valueOf method we can convert as a String.
+
+This method is avilable in the string class it is a static method that is overloaded within a String for all of java built-in types,useing this method primitivetypes can be converted in to a stringformat.
+its overloaded type object,an
+eg:
+====
+class A 
+{
+		public static void main(String[] args) 
+	{
+			System.out.println(String.valueOf('c'));
+
+	}
+}
+
+String toUpperCase()
+converts all of the character in this string to uppercase
+eg:
+====
+class A 
+{
+		public static void main(String[] args) 
+	{
+	String s="this is java";
+System.out.println(s.toUpperCase());
+
+	}
+}
+String toLowerCase()
+converts all of the character in this string to Lowercase
+
+class A 
+{
+		public static void main(String[] args) 
+	{
+String s="THIS IS JAVA";
+System.out.println(s.toLowerCase());
+
+	}
+}
+
+public String trim()
+right hand side and left hand side whitespaces its remove.
+eg:
+===
+class A 
+{
+		public static void main(String[] args) 
+	{
+			System.out.println("     shiva      ".trim());
+						System.out.println("     shiva      ");
+
+	}
+}
+
+	public String concat(String str)
+its concatinating two strings
+String s="shiva";
+String s1="reddy";
+System.out.println(s.concat(s1));//shivareddy
+
+
+===================================================================================
+
+== vs boolean equals(object str)
+=================================
+Once we use == if operands are primitive data types it checks the content.if content is same return true otherwise false.
+If operands are objects its checks the address of object. if adress is same it return true otherwise false
+eg:
+a)int i=100;
+int j=100;
+if(i==j)//true
+b)int i=100;
+int j=50;
+if(i==j)//false
+
+d)
+String s=new String("shiva");
+String s1=new String("shiva");
+if(s==s1)//false
+String str="shiva";
+String str1="shiva";
+if(str==str1)//true
+
+boolean equals(object str)
+==========================
+if operands are objects it checks the content if content is same then it return true other wise false
+note:This method will not work with primitive data type.
+eg:
+===
+a)
+String s=new String("shiva");
+String s1=new String("shiva");
+if(s.equals(s1))//true
+
+b)String str="shiva";
+String str1="shiva";
+if(str.equals(str1))//true
+
+c)
+String s=new String("SHIVA");
+String s1=new String("shiva");
+if(s.equals(s1))//false
+bcz java is a case sensitive it follows case operations.
+
+to ignore case operations we will take boolean equalsIgnoreCase(String str)
+String s=new String("SHIVA");
+String s1=new String("shiva");
+if(s.equalsIgnoreCase(s1))//true
+
+
+public char charAt(int index)
+Returns the char value at the specified index. An index ranges from 0 . The first char value of the sequence is at index 0, the next at index 1, and so on, as for array indexing. 
+System.out.println("shiva".charAt(1));//h
+eg:
+===
+public class A{
+
+   public static void main(String args[]) {
+   System.out.println("shiva".charAt(1));//h
+      String s = "Strings are immutable";
+      char result = s.charAt(8);
+      System.out.println(result);
+   }
+}
+public int length()
+This method returns the length of this string.
+eg
+===
+public class A{
+   public static void main(String args[]){
+      String Str1 = new String("Welcome to ShivaTraining");
+      System.out.println(Str1.length());
+   }
+}
+
+CharSequence subSequence(int startindex,int endindex)
+returns a new character sequence that is a subsequence of this sequence.
+eg
+===
+class A{
+   public static void main(String args[]){
+      String Str = new String("Welcome to shivaonlinetraining");
+     System.out.println(Str.subSequence(0,10) );
+
+      System.out.print("Return Value :" );
+      System.out.println(Str.subSequence(10, 15) );
+   }
+}
+
+int compareTo(Object o)
+========================
+coparing object to object
+or
+int compareTo(String anotherString)
+comparing string to string
+The value 0 if the argument is a string  equal to this string; a value less than 0 if the argument is a string  greater than this string; and a value greater than 0 if the argument is a string less than this string. 
+eg
+===
+public class A {
+
+   public static void main(String args[]) {
+      String str1 = "Strings are immutable";
+	  String str2 = "Strings are immutable";
+      String str3 = "Integers are not immutable";
+
+      int result = str1.compareTo(str2);
+      System.out.println(result);
+	  
+      result = str2.compareTo( str3 );
+      System.out.println(result);
+	 
+      result = str3.compareTo( str1 );
+      System.out.println(result);
+   }
+}
+
+
+public String[] split(String regex)
+Splits this string around matches of the given regular expression. 
+
+public String[] split(String regex, int limit)
+Splits this string around matches of the given regular expression. 
+
+eg
+===
+public class A{
+   public static void main(String args[]){
+      String Str = new String("Welcome-to-ShivaOnlineTraining");
+
+      System.out.println("Return Value :" );
+      for (String retval: Str.split("-", 2)){
+         System.out.println(retval);
+      }
+      System.out.println("");
+      System.out.println("Return Value :" );
+      for (String retval: Str.split("-", 3)){
+         System.out.println(retval);
+      }
+      System.out.println("");
+      System.out.println("Return Value :" );
+      for (String retval: Str.split("-", 0)){
+         System.out.println(retval);
+      }
+      System.out.println("");
+      System.out.println("Return Value :" );
+      for (String retval: Str.split("-")){
+         System.out.println(retval);
+      }
+   }
+}
+
+
+
+    public static String copyValueOf(char[] data): 
+    Returns a String that represents the character sequence in the array specified.
+
+    public static String copyValueOf(char[] data, int start, int count):
+    Returns a String that represents the character sequence in the array specified.
+eg
+===
+public class A {
+
+   public static void main(String args[]) {
+      char[] Str1 = {'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'};
+      String Str2 = "";
+
+      Str2 = Str2.copyValueOf( Str1 );
+      System.out.println("Returned String: " + Str2);
+
+      Str2 = Str2.copyValueOf( Str1, 2, 6 );
+      System.out.println("Returned String: " + Str2);
+   }
+}
+public void getChars(int srcBegin,
+                     int srcEnd,
+                     char[] dst,
+                     int dstBegin)
+This method copies characters from this string into the destination character array. 
+
+
+
+    public int indexOf(int ch): 
+    Returns the index within this string of the first occurrence of the specified character or -1 if the character does not occur.
+
+    public int indexOf(int ch, int fromIndex):
+    Returns the index within this string of the first occurrence of the specified character, starting the search at the specified index or -1 if the character does not occur.
+
+    int indexOf(String str): 
+    Returns the index within this string of the first occurrence of the specified substring. If it does not occur as a substring, -1 is returned.
+
+    int indexOf(String str, int fromIndex): 
+    Returns the index within this string of the first occurrence of the specified substring, starting at the specified index. If it does not occur, -1 is returned.
+note:
+    ch -- a character.
+    fromIndex -- the index to start the search from.
+    str -- a string.
+eg
+==
+public class A {
+
+   public static void main(String args[]) {
+      String Str = new String("Welcome to shivaOnlineTraining");
+      String SubStr1 = new String("Training");
+      String SubStr2 = new String("ShivaOnline");
+
+      System.out.print("Found Index :" );
+      System.out.println(Str.indexOf( 'o' ));
+      System.out.print("Found Index :" );
+      System.out.println(Str.indexOf( 'o', 5 ));
+      System.out.print("Found Index :" );
+      System.out.println( Str.indexOf( SubStr1 ));
+      System.out.print("Found Index :" );
+      System.out.println( Str.indexOf( SubStr1, 15 ));
+      System.out.print("Found Index :" );
+      System.out.println(Str.indexOf( SubStr2 ));
+   }
+}
+
+public boolean matches(String regex)
+his method returns true if, and only if, this string matches the given regular expression.
+eg
+==
+public class A{
+   public static void main(String args[]){
+      String Str = new String("shivaOnline");
+
+      System.out.print("Return Value :" );
+      System.out.println(Str.matches("shiva"));
+
+      System.out.print("Return Value :" );
+      System.out.println(Str.matches("Online"));
+
+      System.out.print("Return Value :" );
+      System.out.println(Str.matches("shiva(.*)"));
+   }
+}
+===============================================================================
+
+StringBuffer
+====================
+If the content will change frequently then it is never recommaded to go for string.Bcz for every change compulasary a new object is created.
+To handle this requirement compulsary  we should go for StrinBuffer where all changes will be performed in existing object only instead of creating new object.
+
+constructors
+================
+1)StringBuffer()
+creates an empty stringBuffer object with default intial capacity 16
+Once SB reaches its max capacity  Sb object will be created with new capacity(currentcapacity+1)*2
+
+eg:
+====
+class A 
+{
+	public static void main(String[] args) 
+	{
+		StringBuffer sb=new StringBuffer();
+		System.out.println(sb.capacity());//16
+		sb.append("abcdefghijklmnop");//
+System.out.println(sb.capacity());//16
+		sb.append("qr");//
+System.out.println(sb.capacity());//34
+		
+System.out.println("Hello World!");
+	}
+}
+
+2)StringBuffer(int intialcapacity)
+creates an empty sb object with specified intialcapacity.
+3)StringBuffer(String s)
+creates an equvalent sb object for the given string with
+capcity=16+s.length();
+Important methods of StringBuffer class
+========================================
+public int length()
+public int capacity()
+public char charAt(int index)
+public void setCharAt(int index,char ch)
+to replace the character locating at specified index with the provided characters.
+public StringBuffer append(primtivevalues,objects,strng,character.......)
+public StringBuffer insert(int index,String s)
+public StringBuffer insert(int startindex,primitve values)//overloaded methods
+eg: StringBuffer sb=new StringBuffer("sha");
+sb.insert(1,"iv");/shiva
+
+public StringBuffer  delete(int begin,int end);
+to delete the character present at begin index to end-1
+public StringBuffer  deleteCharAt(int index);
+public StringBuffer reverse()
+eg: StringBuffer sb=new StringBuffer("sha");
+s.o.p(sb.reverse());//ahs
+
+public void setLength(int length)
+eg: StringBuffer sb=new StringBuffer("sha");
+s.o.p(sb.setLength(5));
+public void ensureCapacity(int capacity)
+the capacity based on our requirement 
+eg
+eg: StringBuffer sb=new StringBuffer();
+s.o.p(sb.capacity());//16
+sb.ensureCapacity(2000);
+s.o.p(sb.capacity());//2000
+
+public void trimToSize()
+To release extra allocated free memory after calling this method length and capcity will be equal.
+
+eg: StringBuffer sb=new StringBuffer();
+sb.ensureCapacity(2000);
+sb.append("shiva");
+s.o.p(sb.capacity());//2000
+sb.trimToSize();
+s.o.p(sb.capacity());//5
+
+
+The StringBuffer and StringBuilder classes are used when there is a necessity to make a lot of modifications to Strings of characters.
+Unlike Strings objects of type StringBuffer and Stringbuilder can be modified over and over again with out leaving behind a lot of new unused objects.
+
+The StringBuilder class was introduced as of Java 5 and the main difference between the StringBuffer and StringBuilder is that StringBuilders methods are not thread safe(not Synchronised).
+
+It is recommended to use StringBuilder whenever possible because it is faster than StringBuffer. However if thread safety is necessary the best option is StringBuffer objects.
+eg
+===
+ class A {
+    public static void main(String[] args) {
+        String str = "ShivaOnlineTraining";
+         
+        StringBuilder sb = new StringBuilder(str);
+        
+        sb.reverse();  // reverse it
+        
+        System.out.println(sb);
+    }
+}
+Note: There is also a StringBuffer class that is exactly the same as the StringBuilder class, except that it is thread-safe by virtue of having its methods synchronized. Threads will be discussed in the lesson on concurrency. 
+
+
+DifferenceBetween String and stringBuffer
+=========================================
+Main difference between String and StringBuffer is String is immutable while StringBuffer is mutable means you can modify a StringBuffer object once you created it without creating any new object. This mutable property makes StringBuffer an ideal choice for dealing with Strings in Java. You can convert a StringBuffer into String by its toString() method. 
+
+Difference between StringBuilder and StringBuffer in Java
+=========================================================
+ StringBuffer is very good with mutable String but it has one disadvantage all its public methods are synchronized which makes it thread-safe but same time slow. In JDK 5 they provided similar class called StringBuilder in Java which is a copy of StringBuffer but without synchronization. Try to use StringBuilder whenever possible it performs better in most of cases than StringBuffer class. You can also use "+" for concatenating two string because "+" operation is internal implemented using either StringBuffer or StringBuilder in Java. If you see StringBuilder vs StringBuffer you will find that they are exactly similar and all API methods applicable to StringBuffer are also applicable to StringBuilder in Java. 
+
+
+
+

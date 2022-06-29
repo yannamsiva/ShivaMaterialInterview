@@ -1,0 +1,1018 @@
+Escape Characters
+==============
+sequence Description
+\n Newline. Position the screen cursor at the beginning of the next line.
+\t Horizontal tab. Move the screen cursor to the next tab stop.
+\r Carriage return. Position the screen cursor at the beginning of the current
+line—do not advance to the next line. Any characters output after the carriage
+return overwrite the characters previously output on that line.
+\\ Backslash. Used to print a backslash character.
+\" Double quote. Used to print a double-quote character. For example,
+System.out.println( "\"in quotes\"" );
+displays "in quotes".
+eg
+==
+public class A
+{
+ // main method begins execution of Java application
+ public static void main( String[] args )
+ {
+System.out.print( "Welcome to " );
+System.out.println( "Java Programming!" ); } // end method main
+ } // end class A
+Q)Write a Program Displaying Multiple Lines of Text with a Single Statement
+eg
+==
+public class A
+{
+ // main method begins execution of Java application
+ public static void main( String[] args )
+ {
+ System.out.println( "Welcome\nto\n Java\nProgramming!" );
+ } // end method main
+ } // end class A
+
+ Displaying Text with printf
+ ===========================
+
+ The System.out.printf method (f means “formatted”) displays formatted data
+
+ System.out.printf( "%s\n%s\n",
+"Welcome to", "Java Programming!" );
+call method System.out.printf to display the program’s output. The method call specifies
+three arguments. When a method requires multiple arguments, they’re placed in a
+comma-separated list.
+
+eg
+==
+public class A
+{
+ // main method begins execution of Java application
+ public static void main( String[] args )
+ {
+System.out.printf( "%s\n%s\n",
+"Welcome to", "Java Programming!" ); } // end method main
+ } // end class A
+
+eg:
+===
+// Fig. 2.7: Addition.java
+ // Addition program that displays the sum of two numbers.
+import java.util.*;
+public class Addition
+ {
+ // main method begins execution of Java application
+ public static void main( String[] args )
+ {
+
+// Addition program that displays the sum of two numbers. (Part 1 of 2.)
+
+// create a Scanner to obtain input from the command window
+Scanner input = new Scanner( System.in );
+int number1; // first number to add
+int number2; // second number to add
+int sum; // sum of number1 and number2
+System.out.print( "Enter first integer: " ); // prompt
+number1 = input.nextInt(); // read first number from user
+number2 = input.nextInt(); // read second number from user
+sum = number1 + number2; // add numbers, then store total in sum
+System.out.printf( "Sum is %d\n", sum ); // display sum
+} // end method main
+ } // end class Addition
+
+
+
+
+
+Arrays
+============ 
+In java arrays are treated as objects While useing array we create object of arrays.
+
+One of the peculiar character of arrays is that without useing the name of the class ,we use new operator
+to create an array object.
+
+In any programming language we cannot create an array without mentioning the size of the array.
+The size is defined ,it is fixed we cannot not alter it during run time.
+
+To use an array in a program, you must declare a variable to reference the array, and you must specify the type of array the variable can reference. Here is the syntax for declaring an array variable:
+dataType[] arrayRefVar;   // preferred way.
+or
+dataType arrayRefVar[];  //  works but not preferred way.
+Note: The style dataType[] arrayRefVar is preferred. The style dataType arrayRefVar[] comes from the C/C++ language and was adopted in Java to accommodate C/C++ programmers.
+One-Dimensional Arrays
+======================
+ex: int i=10;
+int ar[]=new  int[5];
+System.out.println(ar[0]);//0
+ar[0]=100;
+System.out.println(ar[0]);//100
+
+eg:
+===
+ class A 
+{
+	public static void main(String[] args) 
+	{
+		//local varible jvm will not assign a value
+		//
+		int i=10;
+		System.out.println(i);//10
+		A b=null;
+System.out.println(b);//null
+int a[]=new int[3];
+System.out.println(a);//
+System.out.println(a[0]);//
+a[1]=100;
+System.out.println(a[1]);//100
+System.out.println(a[2]);//0
+
+		
+	}
+}
+eg:
+====
+class A 
+{
+	public static void main(String[] args) 
+	{
+		//local varible jvm will not assign a value
+		//
+		int i=10;
+		System.out.println(i);//
+		A b=null;
+				System.out.println(b);//
+				int ar[]=new int[3];
+								System.out.println(ar);//
+								System.out.println(ar[1]);//
+								ar[0]=300;
+																System.out.println(ar[0]);//300
+	}
+}
+
+eg
+====
+class Student 
+{
+int i;
+int ar[];
+int ar1[]={100,200,300};
+	public static void main(String[] args) 
+	{
+Student st=new Student();
+System.out.println(st.i);//0
+for(int i=0;i<st.ar1.length;i++)
+		{
+System.out.println(st.ar1[i]);
+		}
+
+//System.out.println(ar1[3]);//ArrayIndexoutofboundException
+	}
+}
+
+eg:
+====
+class A 
+{
+	int i;
+	A d;
+	int ar[];
+	int s[]=new int[3];
+	public static void main(String[] args) 
+	{
+		A b=new A();
+		System.out.println(b.i);
+		System.out.println(b.d);//
+				System.out.println(b.ar);//
+								System.out.println(b.s);//
+																System.out.println(b.s[0]);//0
+		
+	}
+}
+eg:
+====
+class A 
+{
+	int i=100;
+	static int j=200;
+	public static void main(String[] args) 
+	{
+	A b[]=new A[3];
+	System.out.println(b);//adress
+System.out.println(b[0]);//null
+System.out.println(b[0].j);//200
+System.out.println(b[0].i);//nullpointerexception
+	}
+}
+eg
+===
+ class A 
+{
+	int i;
+	A   b;
+	int ar[];//null
+	int a[]=new int[3];
+	public static void main(String[] args) 
+	{
+A  b=new A();
+
+	System.out.println(b.i);
+System.out.println(b.b);
+System.out.println(b.ar);//
+System.out.println(b.a);
+System.out.println(b.a[0]);
+b.a[1]=600;
+
+System.out.println(b.a[1]);//600
+
+
+
+
+
+	
+
+		
+	}
+}
+eg:
+====
+class A 
+{
+	int i=100;
+	static int j=200;
+	public static void main(String[] args) 
+	{
+	A b[]=new A[3];
+	System.out.println(b);//adress
+b[1]=new A();
+	System.out.println(b[1].i);//100
+	System.out.println(b[0].i);//nullpointerException
+
+	}
+}
+
+eg:
+=====
+class A 
+{
+	int i=100;
+	static int j=200;
+	public static void main(String[] args) 
+	{
+	
+	String s[]={"abc","xyz","msd","ssa"};
+	A b[]={new A(),new A(),new A()};
+System.out.println(s[1]);
+System.out.println(b[1].j);//200
+System.out.println(b[1].i);//100
+b[0].i=500;
+b[2].j=300;
+System.out.println(b[0].j);//300
+System.out.println(b[0].i);//500
+
+	}
+}
+eg
+=====
+// Demonstrate a one-dimensional array.
+class A {
+
+public static void main(String args[]) {
+int month_days[];
+month_days = new int[12];
+month_days[0] = 31;
+month_days[1] = 28;
+month_days[2] = 31;
+month_days[3] = 30;
+month_days[4] = 31;
+month_days[5] = 30;
+month_days[6] = 31;
+month_days[7] = 31;
+month_days[8] = 30;
+month_days[9] = 31;
+month_days[10] = 30;
+month_days[11] = 31;
+System.out.println("April has " + month_days[3] + " days.");
+}
+}
+
+eg
+===
+// An improved version of the previous program.
+class A {
+public static void main(String args[]) {
+int month_days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31,
+30, 31 };
+System.out.println("April has " + month_days[3] + " days.");
+}
+}
+
+eg
+===
+// Average an array of values.
+class Average {
+public static void main(String args[]) {
+double nums[] = {10.1, 11.2, 12.3, 13.4, 14.5};
+double result = 0;
+int i;
+for(i=0; i<5; i++)
+result = result + nums[i];
+System.out.println("Average is " + result / 5);
+}
+}
+
+Multidimensional Arrays
+=========================
+
+int twoD[][] = new int[4][5];
+This allocates a 4 by 5 array and assigns it to twoD. Internally this matrix is implemented
+as an array of arrays of int
+note: right index is row ,left index is column
+eg
+=====
+class TwoDArray {
+public static void main(String args[]) {
+int twoD[][]= new int[4][5];
+int i, j, k = 0;
+for(i=0; i<4; i++)
+for(j=0; j<5; j++) {
+twoD[i][j] = k;
+k++;
+}
+for(i=0; i<4; i++) {
+for(j=0; j<5; j++)
+System.out.print(twoD[i][j] + " ");
+System.out.println();
+}
+}
+}
+
+When you allocate memory for a multidimensional array, you need only specify the
+memory for the first (leftmost) dimension. You can allocate the remaining dimensions
+separately. For example, this following code allocates memory for the first dimension of
+twoD when it is declared. It allocates the second dimension manually.
+eg
+====
+int twoD[][] = new int[4][];
+twoD[0] = new int[5];
+twoD[1] = new int[5];
+twoD[2] = new int[5];
+twoD[3] = new int[5];
+While there is no advantage to individually allocating the second dimension arrays
+in this situation, there may be in others. For example, when you allocate dimensions
+manually, you do not need to allocate the same number of elements for each dimension.
+As stated earlier, since multidimensional arrays are actually arrays of arrays, the length
+of each array is under your control. For example, the following program creates a twodimensional
+array in which the sizes of the second dimension are unequal.
+eg
+====
+// Manually allocate differing size second dimensions.
+class TwoDAgain {
+public static void main(String args[]) {
+int twoD[][] = new int[4][];
+twoD[0] = new int[1];
+twoD[1] = new int[2];
+twoD[2] = new int[3];
+twoD[3] = new int[4];
+int i, j, k = 0;
+for(i=0; i<4; i++)
+for(j=0; j<i+1; j++) {
+twoD[i][j] = k;
+k++;
+}
+for(i=0; i<4; i++) {
+for(j=0; j<i+1; j++)
+System.out.print(twoD[i][j] + " ");
+System.out.println();
+}
+}
+}
+
+The use of uneven (or, irregular) multidimensional arrays is not recommended
+for most applications, because it runs contrary to what people expect to find when
+a multidimensional array is encountered. However, it can be used effectively in some
+situations. For example, if you need a very large two-dimensional array that is sparsely
+populated (that is, one in which not all of the elements will be used), then an irregular
+array might be a perfect solution.
+It is possible to initialize multidimensional arrays. To do so, simply enclose each
+dimension’s initializer within its own set of curly braces. The following program creates
+a matrix where each element contains the product of the row and column indexes. Also
+notice that you can use expressions as well as literal values inside of array initializers
+eg
+===
+// Initialize a two-dimensional array.
+class Matrix {
+public static void main(String args[]) {
+double m[][] = {
+{ 0*0, 1*0, 2*0, 3*0 },
+{ 0*1, 1*1, 2*1, 3*1 },
+{ 0*2, 1*2, 2*2, 3*2 },
+{ 0*3, 1*3, 2*3, 3*3 }
+};
+int i, j;
+for(i=0; i<4; i++) {
+for(j=0; j<4; j++)
+System.out.print(m[i][j] + " ");
+System.out.println();
+}
+}
+}
+
+W.A.p program creates a 3 by 4 by 5, three-dimensional array. It then loads each element with
+the product of its indexes. Finally, it displays these products.
+eg
+===
+// Demonstrate a three-dimensional array.
+class threeDMatrix {
+public static void main(String args[]) {
+int threeD[][][] = new int[3][4][5];
+int i, j, k;
+for(i=0; i<3; i++)
+for(j=0; j<4; j++)
+for(k=0; k<5; k++)
+threeD[i][j][k] = i * j * k;
+for(i=0; i<3; i++) {
+for(j=0; j<4; j++) {
+for(k=0; k<5; k++)
+System.out.print(threeD[i][j][k] + " ");
+System.out.println();
+}
+System.out.println();
+}
+}
+}
+
+
+
+
+WrapperClasses
+=================
+ Predefined classes hv been defined to represent the primtive datatypes in the form of object 
+is called as Wrapper Classes.
+The wrapper classes are present in the java.lang.*;
+we hv 8 primitive Datatypes
+like that only we hv 8 wrapper classes.
+1)INTEGER
+2)SHORT
+3)BYTE
+4)LONG
+5)BOOLEAN
+6)FLOAT
+7)CHAR
+8)DOUBLE
+These classes are present in the java.lang.*;
+Every wrapper class hving two constructors
+a)To Accept prmitiveDatatype as a argument
+
+   eg: INTEGER(int a)
+       Double(double d)
+       Float(float f)
+     -------
+    ----------
+ b)To Accept String class object of Primtive DataType as argument
+ 
+   eg: INTEGER(String a)
+       Double(String d)
+       Float(String f)
+     -------
+    ----------
+    note: The String should contain primitive Value.
+
+    eg:
+    ====
+    class A 
+{
+	public static void main(String[] args) 
+	{
+//		String str="100";
+String str="hello";
+		Integer i=new Integer(str);
+		System.out.println(i);//Number formatException
+	}
+}
+
+    eg:
+    ====
+    class A 
+{
+	public static void main(String[] args) 
+	{
+		String str="100";
+		Integer i=new Integer(str);
+		System.out.println(i);//100
+	}
+}
+ 
+
+ note: Once We are working with Character hving only one Constructor
+ Character(char value)
+          Constructs a newly allocated Character object that represents the specified char value.
+
+Number
+============
+Number is the superclass of Byte,Short,Long,Integer,Double,Float 
+sublasses of number must provide methods to convert the represented numaric prmitive values.
+note:Number hving zero based constructor.
+eg: Number()
+byte byteValue()--->The value of the specified number as a byte
+short shortValue()--->The value of the specified number as a short
+long longValue()--->The value of the specified number as a long
+int intValue()--->The value of the specified number as a int
+double doubleValue()--->The value of the specified number as a double
+float floatValue()--->The value of the specified number as a float
+Integer
+===========
+Integer class wraps avalue of the primitive type int in a object An object of type Integer contains a single field whose type is int.
+a)converting an int to String
+b)Stirng to int
+
+ intValue()--->Returns the value of this integer is int.
+eg:
+===
+class A 
+{
+	public static void main(String[] args) 
+	{
+		String str="100";
+//String str="hello";
+		Integer i=new Integer(str);
+		System.out.println(i);//100
+		int d=i.intValue();
+		System.out.println(d);//100
+
+	}
+}
+byte byteValue()--->The value of the specified number as a byte
+short shortValue()--->The value of the specified number as a short
+long longValue()--->The value of the specified number as a long
+int intValue()--->The value of the specified number as a int
+double doubleValue()--->The value of the specified number as a double
+float floatValue()--->The value of the specified number as a float
+eg
+===
+public class B{ 
+
+   public static void main(String args[]){
+      Integer x = 5;
+      // Returns byte primitive data type
+      System.out.println( x.byteValue() );
+
+      // Returns double primitive data type
+      System.out.println(x.doubleValue());
+
+      // Returns long primitive data type
+      System.out.println( x.longValue() );      
+   }
+}
+
+
+
+static int parsexxx(--)
+==============================
+Syntax:
+static int parseInt(String s)
+
+static int parseInt(String s, int radix)
+
+Parameters:
+Here is the detail of parameters:
+    s -- This is a string representation of decimal.
+    radix -- This would be used to convert String s into integer.
+Return Value:
+    parseInt(String s): This returns an integer (decimal only).
+    parseInt(int i): This returns an integer, given a string representation of decimal, binary, octal, or hexadecimal (radix equals 10, 2, 8, or 16 respectively) numbers as input.
+
+Eg:
+
+public class Test{ 
+
+   public static void main(String args[]){
+      int x =Integer.parseInt("9");
+      double c = Double.parseDouble("5");
+      int b = Integer.parseInt("444",16);
+      System.out.println(x);
+      System.out.println(c);
+      System.out.println(b);
+   }
+}
+----->String to int type conversion
+This method is used to get the primitive data type of a certain String. parseXxx() is a static method and can have one argument or two.
+
+eg:
+====
+class A 
+{
+	public static void main(String[] args) 
+	{
+		int i=Integer.parseInt("1000");
+		System.out.println(i);//1000
+
+	}
+}
+
+
+static String toBinaryString(int i)
+static String toOctalString(int j)
+static String toHexString(int i)
+
+eg:
+====
+class A 
+{
+	public static void main(String[] args) 
+	{
+		
+		System.out.println(Integer.toBinaryString(1000));
+				System.out.println(Integer.toOctalString(1000));
+						System.out.println(Integer.toHexString(1000));
+
+	}
+}
+Static Integer valueOf(String s)
+
+AutoBoxing & AutoUnboxing(1.5v)
+==============================
+Untill 1.4 version we cannot provide premitive value in the place of wrapper objects and wrapper objects in the place of primitve. all thre reuqeired conversions shouldb performed explicitly by the programmer.
+ex:
+Boolean b=new Boolean(true);
+if(b)//Incompatable types....
+{
+s.o.p("hello");
+}
+boolean b=b.booleanValue();
+if(b)
+{
+s.o.p("hello");
+}
+But from 1.5 onwards in the place of wrapper objects we can provide primitive value and in the place of primitive value we can provide wrapper objects all the required conversions
+AutoBoxing
+================
+Automatic conversion of primitive value to the wrapper object by compiler is called as AutoBoxing.
+eg: Integer i=10;
+note:compiles converts int to Integer automatically by autoboxing.
+
+Auto-UnBoxing
+==================
+Automcatic conversion of wrapper object to the primitive type by compiler is called auto-unboxing.
+eg:
+int i=new Integer(10);
+note: compiler converts Integer to int automatically by auto-unboxing.
+
+note: Primitve------------->wraperobject(AutoBoxing)
+      Wrpper-------------->primitive(auto-unboxing)
+
+
+      exam purpose
+      =========
+      ex:
+      ===
+      class Test
+      {
+      static Integer i=10;-->A.B
+      p.s.v.m(string[]arg)
+      {
+      int i=i;--->AUB
+      m1(i);AB
+      }
+p.s.v.m1(Integer i)
+{
+int k=i;AUB
+s.o.p(k);
+}}
+
+note: Bcz of aAutoBoxing and Auto-UnBoxing from 1.5 version onwards there is no difference b/w primtive value and wrapper class object we can use interchangability.
+Escape Sequence	Description
+\t	Inserts a tab in the text at this point.
+\b	Inserts a backspace in the text at this point.
+\n	Inserts a newline in the text at this point.
+\r	Inserts a carriage return in the text at this point.
+\f	Inserts a form feed in the text at this point.
+\'	Inserts a single quote character in the text at this point.
+\"	Inserts a double quote character in the text at this point.
+\\	Inserts a backslash character in the text at this point.
+
+Character
+==========
+Example:
+
+char ch = 'a';
+
+// Unicode for uppercase Greek omega character
+char uniChar = '\u039A'; 
+
+// an array of chars
+char[] charArray ={ 'a', 'b', 'c', 'd', 'e' }; 
+
+However in development, we come across situations where we need to use objects instead of primitive data types. In order to achieve this, Java provides wrapper class Character for primitive data type char.
+
+The Character class offers a number of useful class (i.e., static) methods for manipulating characters. You can create a Character object with the Character constructor:
+
+Character ch = new Character('a');
+
+The Java compiler will also create a Character object for you under some circumstances. For example, if you pass a primitive char into a method that expects an object, the compiler automatically converts the char to a Character for you. This feature is called autoboxing or unboxing, if the conversion goes the other way.
+Example:
+
+// Here following primitive char 'a'
+// is boxed into the Character object ch
+Character ch = 'a';
+
+// Here primitive 'x' is boxed for method test,
+// return is unboxed to char 'c'
+char c = test('x');
+
+Character Methods:
+
+Here is the list of the important instance methods that all the subclasses of the Character class implement:
+SN	Methods with Description
+1)	isLetter()
+Determines whether the specified char value is a letter.
+2)	isDigit()
+Determines whether the specified char value is a digit.
+3)	isWhitespace()
+Determines whether the specified char value is white space.
+4)	isUpperCase()
+Determines whether the specified char value is uppercase.
+5)	isLowerCase()
+Determines whether the specified char value is lowercase.
+6)	toUpperCase()
+Returns the uppercase form of the specified char value.
+7)	toLowerCase()
+Returns the lowercase form of the specified char value.
+8)	toString()
+Returns a String object representing the specified character valuethat is, a one-character string
+
+1)
+The method determines whether the specified char value is a letter.
+Syntax:
+
+boolean isLetter(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value:
+
+    This method Returns true if passed character is really a character.
+
+Example:
+
+public class Test {
+
+   public static void main(String args[]) {
+      System.out.println(Character.isLetter('c'));
+      System.out.println(Character.isLetter('5'));
+   }
+}
+
+2)
+
+The method determines whether the specified char value is a digit.
+Syntax:
+
+boolean isDigit(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value:
+
+    This method Returns true if passed character is really a digit.
+
+Example:
+
+public class Test {
+
+   public static void main(String args[]) {
+      System.out.println(Character.isDigit('c'));
+      System.out.println(Character.isDigit('5'));
+   }
+}
+
+3)
+Description:
+
+The method determines whether the specified char value is a white space, which includes space, tab or new line.
+Syntax:
+
+boolean isWhitespace(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value:
+
+    This method Returns true if passed character is really a white space.
+
+Example:
+
+public class Test{
+
+   public static void main(String args[]){
+      System.out.println(Character.isWhitespace('c'));
+      System.out.println(Character.isWhitespace(' '));
+      System.out.println(Character.isWhitespace('\n'));
+      System.out.println(Character.isWhitespace('\t'));
+   }
+}
+
+4)
+
+The method determines whether the specified char value is uppercase.
+Syntax:
+
+boolean isUpperCase(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value:
+
+    This method Returns true if passed character is really an uppercase.
+
+Example:
+
+public class Test{
+
+   public static void main(String args[]){
+      System.out.println( Character.isUpperCase('c'));
+      System.out.println( Character.isUpperCase('C'));
+      System.out.println( Character.isUpperCase('\n'));
+      System.out.println( Character.isUpperCase('\t'));
+   }
+}
+
+5)
+
+Description:
+
+The method determines whether the specified char value is lowercase.
+Syntax:
+
+boolean isLowerCase(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value:
+
+    This method Returns true if passed character is really an lowercase.
+
+Example:
+
+public class Test{
+
+   public static void main(String args[]){
+      System.out.println(Character.isLowerCase('c'));
+      System.out.println(Character.isLowerCase('C'));
+      System.out.println(Character.isLowerCase('\n'));
+      System.out.println(Character.isLowerCase('\t'));
+   }
+}
+
+6)
+Description:
+
+The method returns the uppercase form of the specified char value.
+Syntax:
+
+char toUpperCase(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value :
+
+    This method Returns the uppercase form of the specified char value.
+
+Example:
+
+public class Test{
+
+   public static void main(String args[]){
+      System.out.println(Character.toUpperCase('c'));
+      System.out.println(Character.toUpperCase('C'));
+   }
+}
+
+7)
+Description:
+
+The method returns the lowercase form of the specified char value.
+Syntax:
+
+char toLowerCase(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value:
+
+    This method Returns the lowercase form of the specified char value.
+
+Example:
+
+public class Test{
+
+   public static void main(String args[]){
+      System.out.println(Character.toLowerCase('c'));
+      System.out.println(Character.toLowerCase('C'));
+   }
+}
+
+8)
+
+Description:
+
+The method returns a String object representing the specified character value, that is, a one-character string.
+Syntax:
+
+String toString(char ch)
+
+Parameters:
+
+Here is the detail of parameters:
+
+    ch -- Primitive character type
+
+Return Value:
+
+    This method Returns String object
+
+Example:
+
+public class Test{
+
+   public static void main(String args[]){
+      System.out.println(Character.toString('c'));
+      System.out.println(Character.toString('C'));
+   }
+}
+
+
+
+eg
+==
+ /*
+W.r.p swapping of two values by accepting the values dynamically
+
+ */
+class Swap
+{
+	int a,b;
+	void assign(int x,int y)
+	{
+a=x;
+b=y;
+	}
+	void swapValues()
+	{
+
+int t=0;
+t=a;
+a=b;
+b=t;
+	}
+
+void disp()
+	{
+
+System.out.println("value of a"+a);
+System.out.println("value of B"+b);
+	}
+}
+class A
+{
+	public static void main(String[]s) 
+	{
+	int x=Integer.parseInt(s[0]);
+	int y=Integer.parseInt(s[1]);
+Swap so=new Swap();
+so.assign(x,y);
+System.out.println("Original values");
+so.disp();
+so.swapValues();
+System.out.println("Swapped values");
+so.disp();
+	}
+
+}

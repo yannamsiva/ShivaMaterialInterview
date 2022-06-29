@@ -1,0 +1,80 @@
+1.Find Maximum of 2 nos.
+2.Find Minimum of 2 nos. using conditional operator
+3.Write a program that will read a float type value from the   keyboard and print the following output.
+   ->Small Integer not less than the number.
+   ->Given Number.
+   ->Largest Integer not greater than the number.
+4.Write a program to generate 5 Random nos. between 1 to 100, and it
+  should not follow with decimal point.
+
+5.Write a program to display a greet message according to
+   Marks obtained by student.
+6.Write a program to find SUM AND PRODUCT of a given Digit. 
+7.a program to Find Factorial of Given no. 
+8.a program to Reverse a given no. 
+9.Write a program to find Fibonacci series of a given no.
+  Example :
+        Input - 8
+        Output - 1 1 2 3 5 8 13 21
+10.Write a program to find sum of all integers greater than 100 and
+   less than 200 that are divisible by 7
+11.Write a program to Concatenate  string using for Loop
+
+   Example:
+          Input - 5
+          Output - 1 2 3 4 5 
+12.Program to Display Multiplication Table 
+13.Write a program to Swap the values
+14.Write a program to convert given no. of days into months and days.
+  (Assume that each month is of 30 days)
+  Example :
+           Input - 69
+           Output - 69 days = 2 Month and 9 days 
+15.Write a program to generate a Triangle.
+  eg:
+  1
+  2 2
+  3 3 3
+16.Write a program to Display Invert Triangle.
+   Example:
+          Input - 5
+          Output :
+          5 5 5 5 5
+          4 4 4 4
+          3 3 3
+          2 2
+          1
+17.Write a program to find whether given no. is Armstrong or not.
+  Example :
+           Input - 153
+           Output - 1^3 + 5^3 + 3^3 = 153, so it is Armstrong no. 
+
+18.Write a program to Find whether number is Prime or Not.
+19.Write a program to find whether no. is palindrome or not.
+20.switch case demo
+   Example :
+           Input - 124
+           Output - One Two Four
+21.Write a program to generate Harmonic Series.
+   Example :
+           Input - 5
+           Output - 1 + 1/2 + 1/3 + 1/4 + 1/5 = 2.28 (Approximately) 
+
+22.a program to find average of consecutive N Odd no. and Even no. 
+23.Display Triangle as follow : BREAK DEMO.
+    1
+    2 3
+    4 5 6
+    7 8 9 10 ... N 
+24.Display Triangle as follow
+    0
+    1 0
+    1 0 1
+    0 1 0 1
+25.Display Triangle as follow
+    1
+    2 4
+    3 6 9
+    4 8 12 16 ... N (indicates no. of Rows) 
+
+26.

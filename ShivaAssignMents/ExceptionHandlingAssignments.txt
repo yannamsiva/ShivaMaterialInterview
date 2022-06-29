@@ -1,0 +1,42 @@
+1. Write Java Program to accept a number from user, if number is zero throw
+user defined exception "Number is 0" otherwise check whether no. is prime or
+not(use static keyword).
+2. Write class Student with attributes roll no, name, age and course. Initialize
+values through parameterized constructor. If age of student is not in between
+15 and 21 then generate user defined exception "Age Not within Range". If
+name contains numbers or special symbols, raise exception "Name not Valid".
+3. Write a Java Program to find the exception Marks Out of Bounds. Create a
+class Student. If mark is greater than 100, it must generate user defined
+exception called Mark Out of Bounds Exception and throw it.
+4. Find out maximum of array elements and check for array limit.
+5. Write a class Account with acc_no, name and balance. Initialize values through
+parameterized constructor. If balance is between 1000 and 5000, generate
+user defined exception "Balance within the range". If name contains digits,
+raise exception "Name not Valid".
+Exception Handling and Assertion
+Core Java Assignment Chandra Sekhar.B Java Online Trainer
+Skype Id:chandra.b3 Mobile Number - +91-9866037742
+5
+6. Class ExceptionDemo throws following exception depending upon following
+condition:
+ Take any integer from the keyboard.
+ If the integer is between 0 and 5, exception of type "Small Number"
+is thrown.
+ If the number is between 5 and 10,"Proper Number" is thrown.
+ If the number is greater than 10,"Greater Number" is thrown.
+ Also find the factorial of that number(using static keyword).
+7. Class ExceptionDemo throws the following exception depending upon the
+following conditions. Take any string from the keyboard.
+ If string length is between 0 and 5, then Exception "too small string"
+is thrown.
+ If string length is between 5 and 10, then exception to type "Perfect
+String" is thrown.
+8. Program which accepts string from user. If string contains word "India", raise
+an exception.
+9. Write a Java program to find sum of integer from command line argument and
+count invalid integers through command line(Use Exception Handling).
+10.Write a program in Java to check if entered data is alphabet or digit. If it is
+alphabet, then print if it is capital or small case. If digit is entered throw user
+defined exception "digit not allowed".
+11.Write program demonstrating nested try blocks and multiple catch
+statements and using throw and throws and finally keywords.
